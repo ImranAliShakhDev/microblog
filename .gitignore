@@ -2,6 +2,7 @@
 /shelf/
 /workspace.xml
 .idea/*
-dist
+.vscode/
+dist/
 venv/
 __pycache__/
