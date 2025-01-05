@@ -7,6 +7,7 @@ import sqlalchemy as sa
 from app import db
 from app.models import User
 
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -27,13 +28,13 @@ class RegistrationForm(FlaskForm):
             User.username == username.data))
         if user is not None:
             raise ValidationError('Please use a different username.')
-    
+
     def validate_email(self, email):
         user = db.session.scalar(sa.select(User).where(
             User.email == email.data))
         if user is not None:
-            raise ValidationError('Please use a differnt email address.')
-        
+            raise ValidationError('Please use a different email address.')
+
 
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -49,5 +50,8 @@ class EditProfileForm(FlaskForm):
             user = db.session.scalar(sa.select(User).where(
                 User.username == username.data))
             if user is not None:
-                raise ValidationError('Please use a different username.')   
+                raise ValidationError('Please use a different username.')
 
+
+class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
